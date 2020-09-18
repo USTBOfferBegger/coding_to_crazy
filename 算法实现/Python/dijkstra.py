@@ -18,7 +18,6 @@ for i in range(n*n):
     path[i][i] = 0
 
 
-
 for i in range(n):
     for j in range(n):
         if i - 1 >= 0:

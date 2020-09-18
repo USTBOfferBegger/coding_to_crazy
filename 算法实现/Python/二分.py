@@ -5,10 +5,8 @@ def BinarySearch(array,t):
         mid = (low+height)//2
         if array[mid] < t:
             low = mid + 1
-
         elif array[mid] > t:
             height = mid - 1
-
         else:
             return array[mid]
     return -1
