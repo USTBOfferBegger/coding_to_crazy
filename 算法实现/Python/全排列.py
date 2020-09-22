@@ -60,3 +60,36 @@ if __name__ == '__main__':
     #print(permuteUnique_2(nums))
     #print(len(permuteUnique_3(nums)))
 
+
+
+
+m,n = list(map(int,input().strip().split()))
+
+nums = [0] * 6
+num_dir = set()
+res = [0]
+
+base_10 = [10**i for i in range(5,-1,-1)]
+
+def backpack(index,num_dir,nums,res,base_10):
+    if index == 6:
+        if (nums[0]+nums[2]) *10 + nums[1] +nums[3] == nums[4]*10 +nums[5]:
+            total = 0
+            for i in range(len(nums)):
+                total += nums[i] * base_10[i]
+            if m<=total<=n:
+                res[0] +=1
+        return
+    for i in range(0,10):
+        if i not in num_dir:
+            nums[index] = i
+            num_dir.add(i)
+            backpack(index+1,num_dir,nums,res,base_10)
+            num_dir.remove(i)
+
+for i in range(m//100000,n//100000+1):
+    nums[0] = i
+    num_dir.add(i)
+    backpack(1,num_dir,nums,res,base_10)
+    num_dir.remove(i)
+print(res[0])
